@@ -48,6 +48,30 @@ column_name_lookup <-  function(data){
   return(lookup)}
 
 
+update_tab_path <- function(fileset, path = './') {
+  # Corrects path to tab file in R source
+  #
+  # In particular, if you have moved the fileset from the directory 
+  # containing the foo.enc file on which you called gconv.
+  # NB. gconv writes absolute path to directory containing foo.enc,
+  # into foo.r read.table() call
+  #
+  # fileset: prefix for UKB fileset
+  # path: relative path to directory containing the fileset
+  r_file <- sprintf('%s.r', fileset)
+  tab_file <- sprintf('%s.tab', fileset)
+  
+  # Update path to tab file in R source
+  tab_location <- paste(path, tab_file, sep = '')
+  r_location <- paste(path, r_file, sep = '')
+  
+  f <- gsub(
+    "read.*$" ,
+    sprintf("read.delim('%s')", tab_location) , 
+    readLines(r_location))
+  cat(f, file = r_location, sep = '\n')} 
+
+
 
 
 #
@@ -55,7 +79,7 @@ column_name_lookup <-  function(data){
 #
 
 
-tidy_phen <- function(fileset) {
+tidy_phen <- function(fileset, path = './') {
   # Reads UKB phenotype fileset (html, tab, r) and returns a tidy dataset
   #
   # html - contains tables mapping field code to variable name, and labels and levels for categorical variables 
@@ -63,16 +87,19 @@ tidy_phen <- function(fileset) {
   # r - read raw data script (inserts categorical variable levels and labels)
   #
   # fileset: prefix for UKB fileset
-  # returns: a single dataframe
+  # path: relative path to directory containing the fileset
+  # returns: a dataframe
   
-  html_file <- sprintf("%s.html", fileset)
-  tab_file <- sprintf("%s.tab", fileset)
-  r_file <- sprintf("%s.r", fileset)
+  html_file <- sprintf('%s.html', fileset)
+  r_file <- sprintf('%s.r', fileset)
+  tab_file <- sprintf('%s.tab', fileset)
   
-  source(r_file)
+  update_tab_path(fileset, path)
+  
+  source(paste(path, r_file, sep = ''))
   
   tables <- readHTMLTable(
-    doc = html_file,
+    doc = paste(path, html_file, sep = ''),
     stringsAsFactors = FALSE)
   
   variable_names <- column_name_lookup(tables[[2]])

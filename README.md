@@ -13,21 +13,36 @@ After downloading and decrypting your UKB data with the supplied [UKB tools] (ht
 
 From your decrypted UKB data, create a fileset: an html documentation file
 
-```ukb_conv foo.enc_ukb  docs```
+```ukb_conv ukb1234.enc_ukb  docs```
 
 and a tab-delimited data file and R script that reads the tab file
 
-```ukb_conv foo.enc_ukb r```
+```ukb_conv ukb1234.enc_ukb r```
 
 Full details of the data download and decrypt process are given in the [Using UK Biobank Data] (http://biobank.ctsu.ox.ac.uk/crystal/docs/UsingUKBData.pdf) documentation
 
 
 ### Example use
 
-The function `tidy_phen()` takes one argument, the stem of your fileset, and returns a dataframe with usable column names.
+The function `tidy_phen()` takes two arguments, the stem of your fileset and the path, and returns a dataframe with usable column names. You will need to install and load the `XML` libary
 
-```my_ukb_data <- tidy_phen("ukb1234")```
+```
+library(XML)
+source('fix_phenotype_data.R')
+my_ukb_data <- tidy_phen('ukb1234')
+```
 
+You can also specify the path to your fileset if it is not in the current directory. For example, if your fileset is in a subdirectory of the working directory called data
+
+```
+my_ukb_data <- tidy_phen('ukb1234', './data/')
+```
+
+`tidy_phen()` updates the read call in the R source file to point to the correct directory by a call to `update_tab_path()`
+
+<br>
+
+***
 
 #### Notes:
 
