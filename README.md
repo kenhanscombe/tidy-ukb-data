@@ -37,6 +37,6 @@ I'll be updating this as I work through my data. If any of it proves to be usefu
 
 2. Eye-balling the output, I think the variable names are pretty sensible. If you want to drop any more text, this can be done in `description_to_name()`
 
-3. I've preserved the __index__ and __array__ from the field code in the variable name, as two numbers separated by underscores at the end of the name e.g. *name_index_array*. __index__ captures the assessment. __array__ captures multiple answers to the same "question". See UK Biobank documentation for detaied description of [instance] (http://biobank.ctsu.ox.ac.uk/crystal/instance.cgi?id=2) and [array] (http://biobank.ctsu.ox.ac.uk/crystal/help.cgi?cd=array).
+3. I've preserved the __index__ and __array__ from the field code in the variable name, as two numbers separated by underscores at the end of the name e.g. *name_index_array*. __index__ captures the assessment instance. __array__ captures multiple answers to the same "question". See UK Biobank documentation for detailed description of [index] (http://biobank.ctsu.ox.ac.uk/crystal/instance.cgi?id=2) and [array] (http://biobank.ctsu.ox.ac.uk/crystal/help.cgi?cd=array).
 
 (http://biobank.ctsu.ox.ac.uk/crystal/instance.cgi?id=2)
