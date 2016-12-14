@@ -24,8 +24,8 @@ description_to_name <-  function(data) {
   name <- gsub('uses_data-coding.*simple_list.$', '', name)
   name <- gsub('uses_data-coding.*hierarchical_tree.', '', name)
   name <- gsub(',', '', name)
-  name <- gsub('(', '', name)
-  name <- gsub(')', '', name)
+  name <- gsub('\\(', '', name)
+  name <- gsub('\\)', '', name)
   
   ukb_index_array <- gsub('^.*-', '', data[, 'UDI'])
   ukb_index_array <- gsub('\\.', '_', ukb_index_array)
