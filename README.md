@@ -4,9 +4,28 @@
 Some convenience R tools for making UK Biobank (UKB) phenotype data tidier.
 
 
+***
+
+# NB
+
+All functionality in this repo is now include in the package `ukbtools`. To install the development version
+
+```{r, eval = FALSE}
+
+library(devtools)
+install_github("kenhanscombe/ukbtools", build_vignettes = TRUE)
+
+```
+
+Please see [ukbtools repo](https://github.com/kenhanscombe/ukbtools) for more information.
+
+***
+
+<br>
+
 ### Getting started
 
-After downloading and decrypting your UKB data with the supplied [UKB tools] (http://biobank.ctsu.ox.ac.uk/crystal/docs/UsingUKBData.pdf), you have multiple files that need to be brought together to give you a tidy dataset to explore. The data file in any format has column names that are the field codes from the UKB data showcase. You can retrieve the variable names from the html file created using the UKB tools. 
+After downloading and decrypting your UKB data with the supplied [UKB programs] (http://biobank.ctsu.ox.ac.uk/crystal/docs/UsingUKBData.pdf), you have multiple files that need to be brought together to give you a tidy dataset to explore. The data file in any format has column names that are the field codes from the UKB data showcase. You can retrieve the variable names from the html file created using the UKB tools. 
 
 
 ### Prerequisites
