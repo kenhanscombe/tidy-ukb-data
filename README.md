@@ -13,7 +13,7 @@ All functionality in this repo is now include in the package `ukbtools`. To inst
 ```{r, eval = FALSE}
 
 library(devtools)
-install_github("kenhanscombe/ukbtools", build_vignettes = TRUE)
+install_github("kenhanscombe/ukbtools", build_vignettes = TRUE, dependencies = TRUE)
 
 ```
 
